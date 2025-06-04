@@ -1,0 +1,643 @@
+.products-sidebar {
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 16px 0 rgba(180, 128, 171, 0.07);
+  padding: 1rem 0.75rem 3.5rem 0.75rem;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-min-width);
+  max-width: var(--sidebar-max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  border: 0.5px solid var(--primary-200);
+}
+
+/* Search */
+.sidebar-search {
+  margin-bottom: 10px;
+}
+.sidebar-search-box {
+  display: flex;
+  align-items: center;
+  background: var(--primary-100); /* culoarea dorită */
+  border: 1.5px solid var(--primary-500);
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 2.75rem;
+}
+.sidebar-search-box svg {
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+.sidebar-search-box input[type="search"] {
+  border: none;
+  outline: none;
+  background: var(--tertiary-100);
+  font-size: 1rem;
+  color: var(--primary-dark);
+  width: 100%;
+  padding: 0.6rem 0.5rem;
+  font-family: inherit;
+  border-radius: 0.5rem;
+}
+
+.sidebar-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+}
+
+.sidebar-search input[type="search"] {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  color: var(--primary-500);
+  outline: none;
+  transition: border 0.2s;
+}
+.sidebar-search input[type="search"]:focus {
+  background: var(--primary-100-green);
+}
+
+/* Section */
+.sidebar-section {
+  background: none;
+  border-radius: 0.6rem;
+  border: 0.5px solid var(--primary-base-pink);
+  /* margin: 0 12px 14px 12px; */
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Section title */
+.sidebar-section-title {
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: clamp(1rem, 2.5vw, 1.13rem);
+  font-weight: 700;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.6rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none;
+  border-radius: 0.6rem;
+}
+.sidebar-section-title:hover {
+  color: var(--primary-pink);
+}
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-arrow {
+  margin-left: auto;
+  font-size: 1.1rem;
+  color: var(--primary-300);
+}
+
+/* Pentru animație săgeată */
+.sidebar-arrow svg {
+  transition: transform 0.2s;
+}
+
+/* List */
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: max-height 0.2s;
+}
+.sidebar-list li {
+  margin: 0;
+}
+.sidebar-list li:not(:last-child) {
+  border-bottom: 1.5px solid;
+  border-image: linear-gradient(
+    90deg,
+    #fff 0%,
+    var(--primary-dark) 40%,
+    var(--primary-dark) 60%,
+    #fff 100%
+  );
+  border-image-slice: 1;
+}
+.sidebar-list li a {
+  display: block;
+  padding: 0.75rem 0 0.75rem 0.6rem;
+  color: var(--primary-dark);
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  border-radius: 0.4rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-list li a:hover {
+  background: #f3e6f3;
+  color: var(--primary-200);
+}
+
+/* Adaugă la finalul Products Page.css pentru evidențiere categorie activă */
+.sidebar-list li a.active {
+  background: var(--primary-pink);
+  color: var(--primary-100-green);
+}
+
+/* Headerul paginii de produse */
+.products-header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 18px auto;
+  text-align: center;
+  padding-top: 90px; /* spațiu sub meniu */
+}
+
+.products-title {
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--primary-300);
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+.products-description {
+  font-size: clamp(1rem, 2.5vw, 1.18rem);
+  color: var(--primary-500);
+  font-weight: 700;
+  margin-bottom: 82px;
+  letter-spacing: 0.01em;
+}
+
+.products-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--products-gap);
+  padding-inline: var(--products-padding);
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1400px; /* ajustează după nevoie */
+  box-sizing: border-box;
+  padding-inline: min(5vw, 2.5rem);
+}
+
+.products-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Products grid container */
+.products-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 3rem auto;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 32px 0 rgba(180, 128, 171, 0.18);
+}
+
+/* Product image */
+.product-image {
+  width: 100%;
+  aspect-ratio: 1/1.18;
+  background: var(--primary-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--primary-pink);
+  position: relative;
+}
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  background: transparent;
+  aspect-ratio: 1/1;
+}
+
+/* Product info */
+.product-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-100);
+  border-bottom-left-radius: var(--card-radius);
+  border-bottom-right-radius: var(--card-radius);
+}
+.product-info-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  z-index: 2;
+  transition: box-shadow 0.2s;
+}
+
+/* Limitează titlul produsului pe o singură linie și adaugă ... dacă e prea lung */
+.product-title {
+  color: var(--primary-pink);
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  font-weight: 700;
+  margin: 0.75rem 0 0 1rem;
+  letter-spacing: 0.01em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+  height: 2.6em;
+  white-space: normal;
+}
+
+.product-tags {
+  color: var(--primary-pink);
+  font-size: clamp(0.8rem, 2vw, 0.85rem);
+  font-weight: 500;
+  margin: 0.13rem 0 0 1rem;
+  opacity: 0.85;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 1rem 0.9rem 1rem;
+  gap: 0.5rem;
+}
+
+.product-price {
+  font-size: clamp(1rem, 2vw, 1.08rem);
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-right: 0.5rem;
+}
+
+.product-fav {
+  background: none;
+  border: none;
+  padding: 0.38rem;
+  margin-left: 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.product-cart {
+  background: var(--primary-pink);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 1.1rem;
+  padding: 0.625rem 0.625rem;
+  /* font-size: clamp(0.95rem, 2vw, 1.08rem); */
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.product-cart:hover {
+  background: var(--primary-dark);
+}
+
+/* Paginatie nouă, responsive și centrată */
+.products-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0 2.5rem 0;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pagination-btn,
+.pagination-ellipsis {
+  background: var(--primary-100-green);
+  border: 1.5px solid var(--primary-300);
+  color: var(--primary-300);
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  min-width: 38px;
+  text-align: center;
+  user-select: none;
+}
+
+.pagination-btn.active,
+.pagination-btn:hover {
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border-color: var(--primary-300);
+}
+
+.pagination-ellipsis {
+  border: none;
+  background: transparent;
+  color: var(--primary-300);
+  cursor: default;
+  padding: 7px 10px;
+}
+
+.arrow-btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 7px 14px;
+  background: var(--primary-100-green);
+  border: 1.5px solid var(--primary-500);
+  color: var(--primary-300);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.arrow-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.product-info-description {
+  color: var(--primary-500);
+}
+.sidebar-reset-btn {
+  margin: 1.2rem 0 0 0;
+  width: 100%;
+  background: var(--primary-200);
+  color: var(--primary-500);
+  border: 1.5px solid #b884af;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 0.7rem 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-reset-btn:hover {
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border-color: var(--primary-300);
+}
+
+/* Product Info Modal */
+/* Fundal blur pentru overlay */
+.product-info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(99, 67, 94, 0.18);
+  backdrop-filter: blur(6px);
+  z-index: 1001;
+}
+
+/* Modal detalii produs - stil tip cart, mai lat, pe mijloc */
+.product-info-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-100);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px 0 rgba(180, 128, 171, 0.18);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  z-index: 1002;
+  max-width: 600px;
+  width: 95vw;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Închidere */
+.product-info-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--primary-300);
+  cursor: pointer;
+}
+
+/* Header detalii */
+.product-info-header {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+  width: 100%;
+}
+.product-info-header img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  background: var(--primary-100);
+}
+.product-info-header > div {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.product-info-header h2 {
+  color: var(--primary-300);
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+  text-align: left;
+}
+
+.product-info-tags {
+  color: var(--primary-300);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin: 0.2rem 0 0.5rem 0;
+  text-align: left;
+}
+
+.product-info-price {
+  color: var(--primary-500);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  text-align: left;
+}
+.product-info-description {
+  text-align: left;
+}
+.product-info-details {
+  /* margin-bottom: 1.2rem; */
+  color: var(--primary-500);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  width: 100%;
+  text-align: left;
+}
+
+/* Rating și review */
+.product-rating-section {
+  margin-top: 1.2rem;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rating-label {
+  font-weight: 600;
+  color: var(--primary-500);
+  margin-bottom: 0.3rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+.product-rating-stars {
+  font-size: 2rem;
+  color: #ffd600;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+.product-rating-stars .star {
+  cursor: pointer;
+  transition: color 0.2s;
+  color: #ffd600;
+}
+.product-review-text {
+  width: 97%;
+  min-height: 60px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--primary-500);
+  padding: 0.5rem;
+  margin-bottom: 0.7rem;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  resize: vertical;
+}
+
+.product-review-send {
+  width: 100%;
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  transition: background 0.2s;
+}
+.product-review-send:hover {
+  background: var(--primary-500);
+}
+
+@media (max-width: 1100px) {
+  .products-main-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .product-info-modal {
+    max-width: 520px;
+    padding: 2rem 1.5rem;
+  }
+  .products-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+  .product-bottom {
+    width: 100%;
+    flex: 1;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 1rem 1rem 0.9rem 1rem;
+    margin: 0;
+    gap: 0.5rem;
+  }
+  .product-fav {
+    margin-left: 0;
+  }
+  .product-price {
+    margin-right: 0;
+  }
+}
+@media (max-width: 900px) {
+  .product-info-modal {
+    max-width: 440px;
+    padding: 1.5rem 1rem;
+  }
+}
+@media (max-width: 700px) {
+  .product-info-modal {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .product-info-modal {
+    padding: 0.7rem 0.2rem;
+  }
+  .products-main-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .products-sidebar {
+    align-self: center;
+  }
+}
+@media (max-width: 430px) {
+  .product-cart {
+    width: 70%;
+  }
+  .product-review-text {
+    width: 95%;
+  }
+  .product-info-modal {
+    padding: 0.4rem 0.4rem;
+  }
+}

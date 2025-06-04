@@ -1,0 +1,532 @@
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 1.5rem 1rem;
+}
+.contact-title {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-300);
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+.contact-subtitle {
+  text-align: center;
+  color: var(--primary-500);
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}
+.contact-main {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+.contact-form-box {
+  background: var(--primary-100);
+  border: 1.5px solid var(--primary-500);
+  border-radius: 16px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  flex: 1;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2; /* Partea stângă deasupra */
+}
+.contact-form-title {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  color: var(--primary-300);
+}
+.contact-form label {
+  display: block;
+  color: var(--primary-300);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  margin-top: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary-base-pink-2);
+  color: var(--tertiary-300);
+  margin-bottom: 0.2rem;
+  font-family: inherit;
+  resize: none;
+  box-sizing: border-box;
+}
+.contact-form textarea {
+  min-height: 80px;
+  max-height: 180px;
+}
+.contact-form button {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 0;
+  font-weight: 700;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.2s;
+}
+.contact-form button:hover {
+  background: var(--primary-500);
+}
+.contact-info-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 1;
+  align-self: stretch;
+  perspective: 800px;
+  position: relative;
+  z-index: 1;
+}
+.contact-info-card {
+  height: 60%;
+  background: var(--primary-100);
+  border: 1.5px solid var(--primary-500);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: space-between;
+  box-sizing: border-box;
+  opacity: 0;
+  /* Mută cardurile la încărcare în spatele secțiunii din stânga (spre stânga ecranului) */
+  transform: translateX(-120%);
+  animation: slideInRight 0.7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+.contact-info-icon {
+  background: var(--primary-500);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-info-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.contact-info-title {
+  color: var(--primary-300);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.contact-info-desc {
+  color: var(--primary-200);
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-info-btn {
+  width: 20%;
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+.contact-info-btn:hover {
+  background: var(--primary-500);
+}
+
+/* Animation delay for each card */
+.contact-info-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.contact-info-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.contact-info-card:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Adaugă la finalul Contact Page.css */
+
+.chat-widget {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: var(--primary-100);
+  border-left: 0.5px solid var(--primary-500);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: 0 4px 32px 0 rgba(184, 132, 175, 0.13);
+  z-index: 9999;
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-widget.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chat-header {
+  background: linear-gradient(120deg, #63435e 0%, #94628a 100%);
+  color: var(--primary-100-green);
+  padding: 1.2rem 1.5rem 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 80px;
+  z-index: 2;
+  border-radius: 0;
+}
+
+.chat-header-icon {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.chat-header-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--primary-100-green);
+  flex: 1;
+  letter-spacing: 0.01em;
+}
+.chat-header-arrow {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.chat-body {
+  flex: 1 1 auto;
+  background: var(--primary-100);
+  padding: 1.2rem 1rem 0 1rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.chat-footer {
+  background: var(--primary-100);
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  border-top: 0.5px solid var(--primary-500);
+  display: flex;
+  align-items: flex-end;
+}
+
+.chat-input-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  background: transparent;
+  border-radius: 24px;
+  border: 1px solid var(--primary-500);
+  padding: 0.2rem 0.7rem 0.2rem 0.5rem;
+  background: var(--primary-100);
+}
+
+.chat-footer-icon {
+  margin-right: 0.3rem;
+  display: flex;
+  align-items: center;
+}
+.liniar-input {
+  width: 0.5px;
+  height: 24px;
+  background: var(--primary-500);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.chat-input {
+  flex: 1 1 auto;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  color: var(--primary-100-green);
+  padding: 0.5rem 0.3rem;
+}
+.chat-input::placeholder {
+  color: var(--primary-100-green);
+}
+.chat-send {
+  background: linear-gradient(
+    120deg,
+    var(--primary-500) 0%,
+    var(--primary-300) 100%
+  );
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.chat-send:hover {
+  background: var(--primary-600);
+}
+
+.chat-widget {
+  width: 30%;
+  height: 100%;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 0;
+  position: fixed;
+  background: var(--primary-100-green);
+  z-index: 9999;
+  transform: translateY(0);
+  opacity: 1;
+  animation: none;
+}
+.chat-widget.closing {
+  animation: chat-slide-out-desktop 0.5s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+/* Responsive styles */
+@media (max-width: 1100px) {
+  .contact-container {
+    max-width: 98vw;
+  }
+  .contact-form-box,
+  .contact-info-boxes {
+    max-width: 100%;
+  }
+  .chat-widget {
+    width: 40%;
+  }
+}
+@media (max-width: 900px) {
+  .contact-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-form-box,
+  .contact-info-boxes {
+    width: 100%;
+    max-width: 100%;
+  }
+  .contact-info-boxes {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-info-card {
+    flex: 1 1 0;
+  }
+  .chat-widget {
+    width: 50%;
+  }
+}
+@media (max-width: 700px) {
+  .contact-container {
+    padding: 1.2rem 0.3rem;
+  }
+  .contact-info-boxes {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-form-box,
+  .contact-info-card {
+    padding: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .contact-info-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .contact-info-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+  .chat-widget {
+    width: 100%;
+  }
+}
+@media (max-width: 430px) {
+  .contact-info-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .contact-form button {
+    padding: 0.5rem 0;
+  }
+  .chat-widget {
+    width: 100%;
+  }
+}
+
+/* Adaugă la finalul Contact Page.css pentru mesajul de la support */
+.chat-message.support-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.2rem;
+  margin-top: 1.2rem;
+}
+
+.support-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.7rem;
+}
+
+.support-bubble {
+  background: var(--primary-200);
+  color: var(--primary-100-green);
+  font-weight: 500;
+  border-radius: 50px;
+  padding: 0.6rem 2.5rem 0.6rem 1.2rem;
+  display: inline-block;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+}
+.user-message {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.2rem;
+}
+.user-bubble {
+  background: var(--primary-100-green);
+  color: var(--primary-500);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 0.6rem 1.2rem;
+  min-width: 60px;
+  display: inline-block;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+}
+
+@keyframes toast-in {
+  from {
+    right: -350px;
+    opacity: 0;
+  }
+  60% {
+    right: 40px;
+    opacity: 1;
+  }
+  to {
+    right: 32px;
+    opacity: 1;
+  }
+}
+@keyframes toast-out {
+  from {
+    right: 32px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    right: 32px;
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}
+
+.email-success-toast {
+  position: fixed;
+  bottom: 32px;
+  right: -350px;
+  min-width: 260px;
+  background: #1ed760;
+  color: var(--primary-100-green);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 18px 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(30, 215, 96, 0.15);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.email-success-toast.show {
+  animation: toast-in 0.7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.email-success-toast.hide {
+  animation: toast-out 0.6s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+@keyframes chat-slide-out-desktop {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+@keyframes chat-slide-out-mobile-down {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Desktop și tabletă */
+.chat-widget.closing {
+  animation: chat-slide-out-desktop 0.5s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+/* Pe mobil (max-width: 600px) animatie de sus în jos */
+@media (max-width: 600px) {
+  .chat-widget.closing {
+    animation: chat-slide-out-mobile-down 0.5s cubic-bezier(0.77, 0, 0.18, 1)
+      forwards;
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviews | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="Reviews Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+      });
+    </script>
+    <script type="module" src="Reviews Page.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <section class="reviews-section">
+      <h1 class="reviews-title" data-i18n="reviews_title">Customer Reviews</h1>
+      <p class="reviews-subtitle" data-i18n="reviews_subtitle">
+        See what our community has to say about their AURA experience
+      </p>
+      <div class="reviews-filters">
+        <button
+          class="reviews-filter-btn active"
+          data-i18n="reviews_filter_all">
+          All Reviews
+        </button>
+        <button
+          class="reviews-filter-btn secondary"
+          data-i18n="reviews_filter_verified">
+          Verified Purchases
+        </button>
+        <button
+          class="reviews-filter-btn secondary"
+          data-i18n="reviews_filter_5stars">
+          5 Stars Reviews
+        </button>
+      </div>
+      <div class="reviews-list" id="reviews-list">
+        <!-- Reviews will be populated by JavaScript -->
+      </div>
+      <button class="reviews-loadmore-btn" data-i18n="reviews_loadmore_btn">
+        Load More Reviews
+      </button>
+    </section>
+  </body>
+</html>

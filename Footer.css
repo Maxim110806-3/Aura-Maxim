@@ -1,0 +1,232 @@
+.footer-hero {
+  width: 100vw;
+  background: var(--primary-100);
+  border: 0.5px solid var(--footer-border);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  padding: var(--footer-padding) var(--footer-padding) 0 var(--footer-padding);
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  margin-left: var(--footer-padding);
+  margin-right: var(--footer-padding);
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--footer-gap);
+  width: 100%;
+}
+
+.footer-info {
+  flex: 1 1 260px;
+  max-width: 320px;
+}
+
+.footer-logo {
+  font-size: var(--footer-logo-size);
+  font-weight: var(--footer-logo-weight);
+  color: var(--footer-logo-color);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.footer-description {
+  color: var(--footer-desc-color);
+  font-size: var(--footer-desc-size);
+  margin-bottom: 18px;
+  font-weight: var(--footer-desc-weight);
+}
+
+.social-icons {
+  display: flex;
+  gap: var(--footer-social-gap);
+  margin-bottom: 0;
+}
+
+.social-icons a img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transition: filter 0.2s;
+  filter: grayscale(0.2) brightness(0.95);
+}
+
+.social-icons a img:hover {
+  filter: grayscale(0) brightness(1.1);
+}
+
+.footer-menu {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(var(--footer-column-min), 1fr));
+  gap: var(--footer-menu-gap);
+  flex: 2 1 600px;
+  margin-top: 10.56px;
+}
+
+.footer-column {
+  min-width: var(--footer-column-min);
+}
+
+.footer-column h3 {
+  color: var(--footer-accent);
+  font-size: var(--footer-menu-title-size);
+  font-weight: var(--footer-menu-title-weight);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: var(--footer-link);
+  font-size: var(--footer-menu-link-size);
+  text-decoration: none;
+  font-weight: var(--footer-menu-link-weight);
+  transition: color 0.2s;
+}
+
+.footer-column ul li a:hover {
+  color: var(--footer-link-hover);
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid var(--footer-divider);
+  margin: 28px 0 16px 0;
+  width: 100%;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--footer-bottom-size);
+  color: var(--footer-bottom-color);
+  padding-bottom: 12px;
+}
+
+.copyright {
+  margin: 0;
+  font-size: var(--footer-bottom-size);
+  color: var(--footer-bottom-color);
+  opacity: 0.8;
+  letter-spacing: 0.01em;
+}
+
+.legal-links {
+  display: flex;
+  gap: var(--footer-legal-gap);
+}
+
+.legal-links a {
+  color: var(--footer-bottom-color);
+  text-decoration: none;
+  font-size: var(--footer-bottom-size);
+  opacity: 0.8;
+  transition: color 0.2s;
+}
+
+.legal-links a:hover {
+  color: var(--footer-link-hover);
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .footer-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .footer-menu {
+    flex: 1;
+    margin-top: 0;
+  }
+  .footer-column {
+    margin-bottom: 5vw;
+    h3 {
+      margin-top: 0;
+    }
+  }
+  .footer-column ul li {
+    margin-bottom: 0.5vw;
+  }
+  .final {
+    margin-bottom: 0;
+  }
+  .footer-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 1100px) {
+  .footer-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .footer-menu {
+    flex: 1;
+    margin-top: 0;
+    grid-template-columns: repeat(3, minmax(var(--footer-column-min), 1fr));
+  }
+  .footer-column {
+    margin-bottom: 5vw;
+    h3 {
+      margin-top: 0;
+    }
+  }
+  .footer-column ul li {
+    margin-bottom: 0.5vw;
+  }
+  .final {
+    margin-bottom: 0;
+  }
+  .footer-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 900px) {
+  .footer-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .footer-menu {
+    flex: 1;
+    margin-top: 0;
+  }
+  .footer-column {
+    margin-bottom: 5vw;
+    h3 {
+      margin-top: 0;
+    }
+  }
+  .footer-column ul li {
+    margin-bottom: 0.5vw;
+  }
+  .final {
+    margin-bottom: 0;
+  }
+  .footer-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

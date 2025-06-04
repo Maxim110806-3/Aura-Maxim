@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="Blog Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="SubscriptionComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+      import {
+        openSubscriptionModal,
+        setupSubscriptionModal,
+      } from "./SubscriptionComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+
+        // Setup subscription modal globally (ensure only once)
+        setupSubscriptionModal();
+
+        // Blog Subscribe buttons open subscription modal (DELAY to ensure DOM is ready)
+        setTimeout(() => {
+          document.querySelectorAll(".ai-product-btn").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              openSubscriptionModal();
+            });
+          });
+        }, 0);
+      });
+    </script>
+    <script type="module" src="SubscriptionComponent.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Section: AI-powered Skincare Products -->
+    <section class="ai-products-section">
+      <h2 class="ai-products-title" data-i18n="blog_products_title">
+        Our products
+      </h2>
+      <p class="ai-products-subtitle" data-i18n="blog_products_subtitle">
+        Discover our collection of AI-powered skincare solutions
+      </p>
+      <div class="ai-products-grid">
+        <!-- Card x6 -->
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+        <!-- Copiază cardul de mai sus de 5 ori pentru total 6 carduri -->
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+        <div class="ai-product-card">
+          <img
+            src="https://img.gcimagazine.com/files/base/allured/all/image/2024/08/240425_ACT_ACRE_SHOT_FOUR_INGREDIENT_HERO_121.66c60d7a4aa1a.png?auto=format%2Ccompress&q=70&w=700"
+            alt="Skincare Science" />
+          <div class="ai-product-card-content">
+            <span class="ai-product-category" data-i18n="blog_card_category"
+              >Skincare Science</span
+            >
+            <h3 class="ai-product-name" data-i18n="blog_card_title">
+              Understanding the Science of Skin Aging
+            </h3>
+            <p class="ai-product-desc" data-i18n="blog_card_desc">
+              Discover the latest research on skin aging and how to combat its
+              effects naturally.
+            </p>
+            <button class="ai-product-btn" data-i18n="blog_card_btn">
+              Subscribe for more
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

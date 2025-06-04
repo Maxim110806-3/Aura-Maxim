@@ -1,0 +1,374 @@
+.cart-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-100);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px 0 rgba(180, 128, 171, 0.18);
+  z-index: 1002;
+  min-width: 1100px; /* era 800px, acum mai lat */
+  max-width: 98vw;
+  min-height: 420px; /* mai înalt */
+  padding: 38px 38px 34px 38px; /* padding mai mare */
+  display: none;
+  animation: cartModalIn 0.18s;
+}
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 40, 60, 0.45);
+  backdrop-filter: blur(2.5px);
+  z-index: 1001;
+  display: none;
+}
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+.cart-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cart-modal-content {
+  display: flex;
+  gap: 38px;
+  /* flex-wrap: wrap; */
+}
+.cart-modal-list {
+  flex: 2;
+  /* min-width: 540px; era 340px, acum mai lat
+  max-width: 700px; era 540px, acum mai lat */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: 320px; /* mai mult spațiu pentru produse */
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.cart-modal-item {
+  background: var(--primary-100-green);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px; /* spațiu mai mare între imagine și info */
+  padding: 22px 38px; /* padding mai mare */
+  border: 1.5px solid #e8dae6;
+  position: relative;
+}
+
+/* Pentru imaginea din coș să nu mai aibă fundal roz, doar imaginea să fie vizibilă */
+.cart-modal-item img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.cart-modal-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-modal-item-title {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--primary-500);
+}
+
+.cart-modal-item-tags {
+  font-size: 1.02rem;
+  color: var(--primary-300);
+  opacity: 0.8;
+}
+
+.cart-modal-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cart-modal-item-price {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin-left: 18px;
+  min-width: 100px;
+  text-align: right;
+}
+
+.cart-remove-btn {
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+
+.cart-modal-summary {
+  flex: 1;
+  min-width: 340px; /* era 260px, acum mai lat */
+  background: var(--primary-100-green);
+  border-radius: 20px;
+  padding: 38px 38px 38px 38px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #e8dae6;
+  height: fit-content;
+}
+
+.cart-modal-summary-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin-bottom: 8px;
+}
+.cart-modal-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  color: var(--primary-300);
+  margin-bottom: 2px;
+}
+.cart-modal-summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin: 12px 0 18px 0;
+}
+.cart-modal-checkout {
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 18px;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+.cart-modal-checkout:hover {
+  background: var(--primary-500);
+}
+.cart-empty {
+  font-size: 1.15rem;
+  color: var(--primary-500);
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+
+/* Stil pentru butoanele - și + din coș, fără background, fără border, mai groase și colorate */
+
+.cart-qty-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--primary-500);
+  width: 32px;
+  height: 32px;
+  line-height: 1;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.15s, background 0.15s;
+  box-shadow: none;
+  border: none;
+  /* font-weight și font-size deja crescute pentru grosime */
+}
+
+.cart-qty-btn:active,
+.cart-qty-btn:focus {
+  color: var(--primary-300);
+  background: none;
+}
+
+/* Responsive Cart Modal pentru mobil și tabletă */
+@media (max-width: 1100px) {
+  .cart-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 96vw;
+    max-width: 98vw;
+    min-height: 220px;
+    padding: 12px 4px 12px 4px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(180, 128, 171, 0.18);
+  }
+  .cart-modal-content {
+    flex-direction: column;
+    gap: 12px;
+    /* padding: 0; */
+    /* align-items: center; */
+  }
+  .cart-modal-list {
+    min-width: 100%;
+    max-height: 180px;
+  }
+  .cart-modal-item {
+    gap: 10px;
+    /* padding: 8px 2px; */
+    align-items: center;
+    text-align: center;
+  }
+  .cart-modal-item img {
+    display: block;
+    margin: 0 auto;
+    width: 54px;
+    height: 64px;
+    object-fit: cover;
+  }
+  .cart-modal-item-info {
+    gap: 2px;
+    align-items: start;
+  }
+  .cart-modal-item-title {
+    font-size: 0.98rem;
+    text-align: center;
+  }
+  .cart-modal-item-tags {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .cart-modal-item-price {
+    font-size: 0.95rem;
+    margin-left: 0;
+    min-width: 0;
+    text-align: center;
+  }
+  .cart-modal-summary {
+    min-width: 0;
+    width: 100%;
+    /* max-width: 90vw; */
+    padding: 10px 4px;
+    padding: 22px 23px;
+    border-radius: 10px;
+    font-size: 0.98rem;
+    text-align: center;
+  }
+  .cart-modal-summary-title,
+  .cart-modal-summary-row,
+  .cart-modal-summary-total {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .cart-modal-checkout {
+    font-size: 0.95rem;
+    padding: 6px 0;
+    border-radius: 8px;
+  }
+  .cart-empty {
+    font-size: 0.95rem;
+    margin: 12px 0 8px 0;
+    text-align: center;
+  }
+  .cart-qty-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 1rem;
+    border-radius: 3px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cart-modal {
+    width: 80%;
+    min-width: 96%;
+    padding: 0;
+    border-radius: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .cart-modal-summary-title {
+    padding: 1rem 1rem 0 1rem;
+  }
+  .cart-modal-summary-row,
+  .cart-modal-summary-total {
+    padding: 0rem 1rem 0 1rem;
+  }
+  .cart-modal-content {
+    padding: 3vw;
+    gap: 6px;
+  }
+  .cart-modal-list {
+    max-height: 120px;
+  }
+  .cart-modal-summary {
+    padding: 0;
+    width: 100%;
+    gap: 2vw;
+  }
+  .cart-modal-item {
+    gap: 6px;
+    padding: 5vw;
+  }
+  .cart-modal-item img {
+    width: auto;
+    height: 58px;
+  }
+  .cart-modal-item-title {
+    font-size: 0.92rem;
+  }
+  .cart-modal-item-tags {
+    font-size: 0.78rem;
+  }
+  .cart-modal-item-price {
+    font-size: 0.9rem;
+  }
+  .cart-modal-title {
+    padding: 1rem;
+  }
+  .cart-modal-checkout {
+    font-size: 0.9rem;
+    padding: 10px 0;
+    border-radius: 6px;
+    width: 93%;
+    align-self: center;
+    margin-bottom: 1rem;
+  }
+  .cart-empty {
+    font-size: 0.9rem;
+    margin: 8px 0 4px 0;
+  }
+  .cart-qty-btn {
+    width: 18px;
+    height: 18px;
+    font-size: 0.9rem;
+    border-radius: 2px;
+  }
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Skin Analysis | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="Global.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="Products Page.css" />
+    <link rel="stylesheet" href="Home Page.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+            }
+          );
+        };
+      });
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-[var(--primary-100)] min-h-screen font-['Urbanist',sans-serif] text-[var(--primary-500)]">
+    <!-- AI Skin Analysis Section -->
+    <section
+      class="min-h-screen flex flex-col items-center justify-center py-8 bg-[var(--primary-100)]">
+      <div class="text-center mb-8">
+        <h1
+          class="text-4xl md:text-5xl font-bold mb-2 mt-10 text-[var(--primary-300)] tracking-tight"
+          data-i18n="ai_analysis_title">
+          AI Skin Analysis
+        </h1>
+        <p
+          class="text-lg md:text-xl font-semibold text-[var(--primary-500)]"
+          data-i18n="ai_analysis_subtitle">
+          Get a personalized skin analysis using our advanced AI technology
+        </p>
+      </div>
+      <div
+        class="bg-[var(--primary-100)] rounded-[var(--radius)] border border-[var(--primary-500)] w-[80vw] max-w-3xl mx-auto p-8 flex flex-col items-center shadow-[var(--shadow)]">
+        <div class="flex flex-col items-center mb-6">
+          <div
+            class="w-14 h-14 rounded-full bg-[var(--primary-500)] flex items-center justify-center mb-4">
+            <!-- Aparat foto (camera icon) -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="45"
+              height="40"
+              fill="#b884af"
+              viewBox="0 0 256 256">
+              <path
+                d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"></path>
+            </svg>
+          </div>
+          <h2
+            class="text-2xl font-bold text-[var(--primary-base-pink)] mb-1 text-center"
+            data-i18n="ai_analysis_upload_title">
+            Upload Your Photo
+          </h2>
+          <p
+            class="text-base font-bold text-[var(--primary-500)] mb-2 text-center"
+            data-i18n="ai_analysis_upload_desc">
+            Take or upload a clear, well-lit photo of your face for the most
+            accurate analysis
+          </p>
+        </div>
+        <div class="w-full flex flex-col items-center">
+          <label class="w-full flex justify-center">
+            <div
+              class="border-2 border-dashed rounded-[var(--radius)] flex flex-col items-center justify-center cursor-pointer transition hover:bg-[var(--primary-200)] border-[var(--primary-300)] bg-[var(--primary-100)] relative"
+              style="
+                min-height: 25vh;
+                width: 55%;
+                min-width: 180px;
+                max-width: 55%;
+              ">
+              <!-- Scan icon simplu (fără față/smile) -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                fill="#63435e"
+                viewBox="0 0 256 256"
+                class="z-10">
+                <path
+                  d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88ZM80,72h96a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80A8,8,0,0,1,80,72Zm8,96h80V88H88Z"></path>
+              </svg>
+              <span
+                class="text-[var(--primary-500)] font-semibold text-center text-base mt-2 mb-2 z-10"
+                data-i18n="ai_analysis_upload_btn">
+                Click to upload or drag and drop
+              </span>
+              <input type="file" accept="image/*" class="hidden" />
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const input = document.querySelector(
+          'input[type="file"][accept="image/*"]'
+        );
+        const uploadBox = input.closest("div");
+        const icon = uploadBox.querySelector("svg");
+        const text = uploadBox.querySelector("span");
+        // Creează un element img pentru previzualizare
+        let previewImg = uploadBox.querySelector("img");
+        if (!previewImg) {
+          previewImg = document.createElement("img");
+          previewImg.style.display = "none";
+          previewImg.className =
+            "absolute inset-0 w-full h-full object-cover rounded-[var(--radius)]";
+          uploadBox.appendChild(previewImg);
+        }
+
+        input.addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (evt) {
+              previewImg.src = evt.target.result;
+              previewImg.style.display = "block";
+              if (icon) icon.style.display = "none";
+              if (text) text.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+          } else {
+            previewImg.style.display = "none";
+            previewImg.src = "";
+            if (icon) icon.style.display = "";
+            if (text) text.style.display = "";
+          }
+        });
+      });
+    </script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </body>
+</html>

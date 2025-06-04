@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Aura</title>
+    <link rel="stylesheet" href="Contact Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <div id="chat-vue-app">
+      <div class="contact-container">
+        <h2 class="contact-title" data-i18n="contact_title">Contact Us</h2>
+        <div class="contact-subtitle" data-i18n="contact_subtitle">
+          Have questions? We’re here to help and would love to hear from you
+        </div>
+        <div class="contact-main" data-i18n>
+          <div class="contact-form-box" data-i18n>
+            <div class="contact-form-title" data-i18n="contact_form_title">
+              Get in Touch
+            </div>
+            <form
+              class="contact-form"
+              data-i18n
+              autocomplete="off"
+              @submit.prevent="handleFormSubmit">
+              <label for="name" data-i18n="contact_label_name">Name</label>
+              <input
+                type="text"
+                id="name"
+                v-model="formName"
+                placeholder="Your Name"
+                required
+                data-i18n-placeholder="contact_placeholder_name" />
+
+              <label for="email" data-i18n="contact_label_email">Email</label>
+              <input
+                type="email"
+                id="email"
+                v-model="formEmail"
+                placeholder="your@email.com"
+                required
+                data-i18n-placeholder="contact_placeholder_email" />
+
+              <label for="message" data-i18n="contact_label_message"
+                >Message</label
+              >
+              <textarea
+                id="message"
+                v-model="formMessage"
+                placeholder="How can we help?"
+                required
+                data-i18n-placeholder="contact_placeholder_message"></textarea>
+
+              <button type="submit" data-i18n="contact_btn_send">
+                Send Message
+              </button>
+            </form>
+            <div
+              class="email-success-toast"
+              :class="{ show: showToast, hide: hideToast }"
+              v-if="showToast || hideToast"
+              data-i18n="contact_toast_success">
+              Email sent successfully!
+            </div>
+          </div>
+          <div class="contact-info-boxes" data-i18n>
+            <div class="contact-info-card" data-i18n>
+              <div class="contact-info-icon" data-i18n>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="#b884af"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path>
+                </svg>
+              </div>
+              <div class="contact-info-content" data-i18n>
+                <div
+                  class="contact-info-title"
+                  data-i18n="contact_info_email_title">
+                  Email Us
+                </div>
+                <div
+                  class="contact-info-desc"
+                  data-i18n="contact_info_email_desc">
+                  support@aura.com
+                </div>
+              </div>
+              <button
+                class="contact-info-btn"
+                data-i18n="contact_info_email_btn">
+                Email
+              </button>
+            </div>
+            <div class="contact-info-card" data-i18n>
+              <div class="contact-info-icon" data-i18n>
+                <!-- Phone SVG -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="#b884af"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"></path>
+                </svg>
+              </div>
+              <div class="contact-info-content" data-i18n>
+                <div
+                  class="contact-info-title"
+                  data-i18n="contact_info_call_title">
+                  Call Us
+                </div>
+                <div
+                  class="contact-info-desc"
+                  data-i18n="contact_info_call_desc">
+                  +1 (555) 123-4567
+                </div>
+              </div>
+              <button
+                class="contact-info-btn"
+                data-i18n="contact_info_call_btn">
+                Call
+              </button>
+            </div>
+            <div class="contact-info-card" data-i18n>
+              <div class="contact-info-icon" data-i18n>
+                <!-- Chat SVG -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="#b884af"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M216,48H40A16,16,0,0,0,24,64V224a15.84,15.84,0,0,0,9.25,14.5A16.05,16.05,0,0,0,40,240a15.89,15.89,0,0,0,10.25-3.78l.09-.07L83,208H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM40,224h0ZM216,192H80a8,8,0,0,0-5.23,1.95L40,224V64H216Z"></path>
+                </svg>
+              </div>
+              <div class="contact-info-content" data-i18n>
+                <div
+                  class="contact-info-title"
+                  data-i18n="contact_info_chat_title">
+                  Live Chat
+                </div>
+                <div
+                  class="contact-info-desc"
+                  data-i18n="contact_info_chat_desc">
+                  Available 24/7
+                </div>
+              </div>
+              <button
+                class="contact-info-btn"
+                data-i18n="contact_info_chat_btn">
+                Chat
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="chat-widget"
+        class="chat-widget"
+        v-if="isVisible"
+        :class="{ open: isOpen, closing: !isOpen }">
+        <div class="chat-header">
+          <span class="chat-header-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="60"
+              height="60"
+              fill="#eafdf8"
+              viewBox="0 0 256 256">
+              <path
+                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"></path>
+            </svg>
+          </span>
+          <span
+            class="chat-header-title"
+            style="font-size: 1.6rem; font-weight: 500; color: #eafdf8"
+            >Chat with us!</span
+          >
+          <span class="chat-header-arrow" @click="closeChat">
+            <svg width="36" height="36" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M7 10l5 5 5-5"
+                stroke="#eaf6f6"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+        <div class="chat-body">
+          <div
+            v-for="(msg, idx) in messages"
+            :key="idx"
+            :class="['chat-message', msg.from === 'support' ? 'support-message' : 'user-message']">
+            <span v-if="msg.from === 'support'" class="support-avatar">
+              <svg width="28" height="28" fill="#b884af" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="4"
+                  stroke="#b884af"
+                  stroke-width="2"
+                  fill="none" />
+                <path
+                  d="M4 20c0-3.3137 3.134-6 7-6s7 2.6863 7 6"
+                  stroke="#b884af"
+                  stroke-width="2"
+                  fill="none" />
+              </svg>
+            </span>
+            <span
+              :class="msg.from === 'support' ? 'support-bubble' : 'user-bubble'"
+              >{{ msg.text }}</span
+            >
+          </div>
+        </div>
+        <div class="chat-footer">
+          <div class="chat-input-wrap">
+            <span class="chat-footer-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="#63435e"
+                viewBox="0 0 256 256">
+                <path
+                  d="M201.89,54.66A103.43,103.43,0,0,0,128.79,24H128A104,104,0,0,0,24,128v56a24,24,0,0,0,24,24H64a24,24,0,0,0,24-24V144a24,24,0,0,0-24-24H40.36A88.12,88.12,0,0,1,190.54,65.93,87.39,87.39,0,0,1,215.65,120H192a24,24,0,0,0-24,24v40a24,24,0,0,0,24,24h24a24,24,0,0,1-24,24H136a8,8,0,0,0,0,16h56a40,40,0,0,0,40-40V128A103.41,103.41,0,0,0,201.89,54.66ZM64,136a8,8,0,0,1,8,8v40a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V136Zm128,56a8,8,0,0,1-8-8V144a8,8,0,0,1,8-8h24v56Z"></path>
+              </svg>
+            </span>
+            <div class="liniar-input"></div>
+            <input
+              class="chat-input"
+              type="text"
+              placeholder="Message"
+              v-model="userInput"
+              @keydown="handleInputKey"
+              :disabled="sending" />
+          </div>
+          <button class="chat-send" @click="sendMessage" :disabled="sending">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="72"
+              height="72"
+              fill="#eafdf8"
+              viewBox="0 0 256 256">
+              <path
+                d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14,0-.07-40.06-82.3,48-48a8,8,0,0,0-11.31-11.31l-48,48L24.08,98.25l-.07,0,.14,0L216,40Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            isOpen: false,
+            isVisible: false,
+            userInput: "",
+            sending: false,
+            messages: [
+              {
+                from: "support",
+                text: "Hello, how can I help you?",
+              },
+            ],
+            // Adăugat pentru formularul de contact
+            formName: "",
+            formEmail: "",
+            formMessage: "",
+            showToast: false,
+            hideToast: false,
+          };
+        },
+        mounted() {
+          // Deschide chat la click pe butonul Chat
+          document.querySelectorAll(".contact-info-btn").forEach((btn) => {
+            if (btn.textContent.trim().toLowerCase() === "chat") {
+              btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                this.isVisible = true;
+                setTimeout(() => {
+                  this.isOpen = true;
+                }, 10);
+              });
+            }
+          });
+
+          // Închide chat la click în afara chat-ului
+          document.addEventListener("mousedown", (e) => {
+            const chatWidget = document.getElementById("chat-widget");
+            if (
+              this.isOpen &&
+              chatWidget &&
+              !chatWidget.contains(e.target) &&
+              !(
+                e.target.classList.contains("contact-info-btn") &&
+                e.target.textContent.trim().toLowerCase() === "chat"
+              )
+            ) {
+              this.closeChat();
+            }
+          });
+        },
+        methods: {
+          closeChat() {
+            const chatWidget = document.getElementById("chat-widget");
+            if (window.innerWidth <= 600 && chatWidget) {
+              this.isOpen = false; // declanșează clasa .closing
+              setTimeout(() => {
+                this.isVisible = false; // ascunde complet după animatie
+              }, 500);
+            } else if (chatWidget) {
+              this.isOpen = false;
+              setTimeout(() => {
+                this.isVisible = false;
+              }, 500);
+            } else {
+              this.isOpen = false;
+              this.isVisible = false;
+            }
+          },
+          sendMessage() {
+            if (!this.userInput.trim() || this.sending) return;
+            // Adaugă mesajul userului
+            this.messages.push({
+              from: "user",
+              text: this.userInput,
+            });
+            this.sending = true;
+            this.userInput = "";
+            // După 500ms, adaugă răspunsul automat
+            setTimeout(() => {
+              this.messages.push({
+                from: "support",
+                text: "One moment, I'm calling a real man to respond you.",
+              });
+              this.sending = false;
+              this.$nextTick(() => {
+                const chatBody = document.querySelector(".chat-body");
+                if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+              });
+            }, 500);
+          },
+          handleInputKey(e) {
+            if (e.key === "Enter") {
+              this.sendMessage();
+            }
+          },
+          handleFormSubmit() {
+            if (
+              !this.formName.trim() ||
+              !this.formEmail.trim() ||
+              !this.formMessage.trim()
+            ) {
+              alert("Completează toate câmpurile!");
+              return;
+            }
+            // Golește inputurile
+            this.formName = "";
+            this.formEmail = "";
+            this.formMessage = "";
+
+            // Animatie toast
+            this.showToast = true;
+            this.hideToast = false;
+            setTimeout(() => {
+              this.hideToast = true;
+              this.showToast = false;
+              setTimeout(() => {
+                this.hideToast = false;
+              }, 600); // să dispară complet după animatie
+            }, 2000);
+          },
+        },
+      }).mount("#chat-vue-app");
+    </script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </body>
+</html>

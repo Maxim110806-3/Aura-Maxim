@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --primary-base-pink: #d1b1cb;
+  --primary-base-pink-2: #dcc5d8;
+  --tertiary-300: #bc86b0;
+  --primary-100-green: #eafdf8;
+  --primary-100: #e8dae6;
+  --primary-200: #d1b1cb;
+  --primary-300: #b884af;
+  --primary-500: #63435e;
+  --primary-600: #dcc5d8;
+  --tertiary-100: #eee2eb;
+  --tertiary-200: #d4b4cd;
+  --accent: #e8dfe9;
+  --accent-2: #d1b1cb;
+  --accent-3: #bc86b0;
+  --text-main: #5e4059;
+  --text-dark: #3b2638;
+  --white: #fff;
+  --gray: #e4e2e3;
+  --shadow: 0 8px 32px 0 rgba(180, 128, 171, 0.1);
+  --radius: 18px;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --sidebar-width: 18rem;
+  --sidebar-min-width: 15rem;
+  --sidebar-max-width: 21rem;
+  --products-gap: 2.5rem;
+  --products-padding: 5rem;
+  --card-radius: 1.25rem;
+  --card-shadow: 0 2px 16px 0 rgba(180, 128, 171, 0.07);
+  --card-bg: #f8f6fa;
+  --card-border: #b884af;
+  --primary-pink: #b884af;
+  --primary-dark: #63435e;
+  --section-padding: 6vw;
+  --section-padding-mobile: 4vw;
+}
+
+[data-theme="dark"] {
+  --primary-base-pink: #5b3a4a;
+  --primary-base-pink-2: #4a3745;
+  --tertiary-300: #6f3f64;
+  --primary-100-green: #eafdf8;
+  --primary-100: #3c2d38;
+  --primary-200: #5b3a4a;
+  --primary-300: #6c3c5f;
+  --primary-500: #e3c7dc;
+  --primary-600: #493342;
+  --tertiary-100: #2f222b;
+  --tertiary-200: #503447;
+  --accent: #352b38;
+  --accent-2: #5b3a4a;
+  --accent-3: #6f3f64;
+  --text-main: #e3c5db;
+  --text-dark: #f0d5e8;
+  --white: #1c1c1c;
+  --gray: #2d2c2d;
+
+  --card-bg: #241f28;
+  --card-border: #6c3c5f;
+  --primary-pink: #6c3c5f;
+  --primary-dark: #e3c7dc;
+}
+html,
+body {
+  font-family: "Urbanist";
+  background: var(--primary-100);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-size: clamp(1rem, 1.1vw, 1.3rem);
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --footer-bg: var(--primary-100, #e8dae6);
+  --footer-border: var(--primary-500, #63435e);
+  --footer-accent: var(--primary-300, #b884af);
+  --footer-accent-light: var(--primary-200, #d1b1cb);
+  --footer-text: var(--primary-500, #63435e);
+  --footer-link: var(--primary-500, #63435e);
+  --footer-link-hover: var(--primary-300, #b884af);
+  --footer-divider: #b884af;
+  --footer-radius: var(--radius, 18px);
+  --footer-shadow: var(--shadow, 0 8px 32px 0 rgba(180, 128, 171, 0.1));
+  --footer-font: "Inter", sans-serif;
+  --footer-padding: 32px;
+  --footer-gap: 37px;
+  --footer-menu-gap: 295px;
+  --footer-column-min: 140px;
+  --footer-logo-size: 2rem;
+  --footer-logo-weight: 700;
+  --footer-logo-color: var(--footer-accent);
+  --footer-desc-size: 1rem;
+  --footer-desc-color: var(--footer-text);
+  --footer-desc-weight: 400;
+  --footer-social-gap: 12px;
+  --footer-menu-title-size: 1.25rem;
+  --footer-menu-title-weight: 700;
+  --footer-menu-link-size: 1.08rem;
+  --footer-menu-link-weight: 500;
+  --footer-bottom-size: 0.58rem;
+  --footer-bottom-color: var(--footer-text);
+  --footer-legal-gap: 18px;
+}
+
+[data-theme="dark"] svg,
+[data-theme="dark"] .menu-icon svg,
+[data-theme="dark"] .profile-settings-icon svg,
+[data-theme="dark"] .profile-sub-btn svg,
+[data-theme="dark"] .cart-icon svg,
+[data-theme="dark"] .footer-social svg {
+  filter: none !important;
+  fill: #eafdf8 !important;
+  stroke: #eafdf8 !important;
+}
+
+[data-theme="dark"] .profile-settings-icon svg path,
+[data-theme="dark"] .menu-icon svg path,
+[data-theme="dark"] .cart-icon svg path {
+  fill: #eafdf8 !important;
+  stroke: #eafdf8 !important;
+}

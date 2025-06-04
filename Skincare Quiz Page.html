@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="quiz_title">Skincare Quiz</title>
+    <link rel="stylesheet" href="Skincare Quiz Page.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="Products Page.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+            }
+          );
+        };
+      });
+    </script>
+    <script type="module" src="Skincare Quiz Page.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="quiz-bg">
+      <div class="quiz-card">
+        <div class="quiz-header">
+          <h2 id="quiz-title" class="quiz-title"></h2>
+          <span id="quiz-progress" class="quiz-progress"></span>
+        </div>
+        <div class="quiz-bar">
+          <div class="quiz-bar-inner" id="quiz-bar-inner"></div>
+        </div>
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-footer">
+          <button class="quiz-nav quiz-prev" id="quiz-prev" disabled>
+            <span>Înapoi</span>
+          </button>
+          <button class="quiz-nav quiz-next" id="quiz-next">
+            <span>Următoarea</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

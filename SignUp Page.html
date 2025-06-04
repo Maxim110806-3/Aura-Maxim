@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="SignUp Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <div class="signup-main-container" data-i18n>
+      <div class="signup-left" data-i18n>
+        <img
+          src="./Imagini/profile-768x768.png.png"
+          alt="Profile"
+          class="signup-profile-img" />
+        <div class="signup-left-content" data-i18n>
+          <div class="signup-logo" data-i18n="signup_logo">AURA</div>
+          <div class="signup-login-row" data-i18n>
+            <div class="signup-login-title" data-i18n="signup_login_title">
+              Login to your<br />beauty!
+            </div>
+            <button class="signup-login-btn" data-i18n="signup_login_btn">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="signup-right" data-i18n>
+        <form class="signup-form" autocomplete="off" data-i18n>
+          <h2 class="signup-title" data-i18n="signup_title">Sign Up</h2>
+          <div class="signup-row" data-i18n>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              required
+              data-i18n-placeholder="signup_first_name" />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              required
+              data-i18n-placeholder="signup_last_name" />
+          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            data-i18n-placeholder="signup_email" />
+          <div class="signup-password-row" data-i18n>
+            <input
+              type="password"
+              id="signup-password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="8"
+              data-i18n-placeholder="signup_password" />
+            <img
+              src="https://img.icons8.com/ios-glyphs/30/63435e/visible--v1.png"
+              class="signup-eye toggle-password"
+              data-target="signup-password"
+              alt="Show Password" />
+          </div>
+          <div class="signup-password-row" data-i18n>
+            <input
+              type="password"
+              id="signup-confirm-password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              required
+              minlength="8"
+              data-i18n-placeholder="signup_confirm_password" />
+            <img
+              src="https://img.icons8.com/ios-glyphs/30/63435e/visible--v1.png"
+              class="signup-eye toggle-password"
+              data-target="signup-confirm-password"
+              alt="Show Password" />
+          </div>
+          <button
+            type="submit"
+            class="signup-continue-btn"
+            data-i18n="signup_continue_btn">
+            Continue
+          </button>
+          <div
+            class="signup-error"
+            style="display: none"
+            data-i18n="signup_error"></div>
+          <div class="signup-or" data-i18n="signup_or">Or continue with</div>
+          <div class="signup-social-row" data-i18n>
+            <button type="button" class="signup-social-btn google">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                alt="Google" />
+              <span data-i18n="signup_google">Google</span>
+            </button>
+            <button type="button" class="signup-social-btn facebook">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg"
+                alt="Facebook" />
+              <span data-i18n="signup_facebook">Facebook</span>
+            </button>
+          </div>
+          <div class="signup-terms" data-i18n="signup_terms">
+            By registering you agree with our
+            <a href="#" class="green-link">Terms and Conditions</a>
+          </div>
+        </form>
+        <div
+          class="email-success-toast"
+          id="signup-success-toast"
+          style="display: none"
+          data-i18n="signup_success">
+          Account created successfully!
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .querySelector(".signup-login-btn")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = "Login Page.html";
+        });
+    </script>
+    <script src="SignUp Page.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </body>
+</html>

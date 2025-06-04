@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="Login Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+      });
+    </script>
+    <script type="module" src="Login Page.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("site-theme");
+        if (savedTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="login-main-container">
+      <form class="login-form" autocomplete="off">
+        <h2 class="login-title" data-i18n="login_title">Login</h2>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          data-i18n-placeholder="login_email" />
+        <div class="login-password-row">
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            placeholder="Password"
+            required
+            data-i18n-placeholder="login_password" />
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/63435e/visible--v1.png"
+            class="login-eye toggle-password"
+            data-target="login-password"
+            alt="Show Password" />
+        </div>
+        <button
+          type="submit"
+          class="login-continue-btn"
+          data-i18n="login_continue_btn">
+          Continue
+        </button>
+        <div class="login-signup-link">
+          <span data-i18n="login_no_account">Don't have an account?</span><br />
+          <a href="SignUp Page.html" data-i18n="login_create_account"
+            >Create account</a
+          >
+        </div>
+        <div class="login-or" data-i18n="login_or">Or continue with</div>
+        <div class="login-social-row">
+          <button type="button" class="login-social-btn google">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+              alt="Google" /><span data-i18n="login_google">Google</span>
+          </button>
+          <button type="button" class="login-social-btn facebook">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg"
+              alt="Facebook" /><span data-i18n="login_facebook">Facebook</span>
+          </button>
+        </div>
+        <div class="login-terms" data-i18n="login_terms">
+          By registering you agree with our
+          <a href="#" class="green-link">Terms and Conditions</a>
+        </div>
+      </form>
+      <div
+        class="email-success-toast"
+        id="login-success-toast"
+        style="display: none"
+        data-i18n="login_success">
+        Login successful!
+      </div>
+    </div>
+  </body>
+</html>

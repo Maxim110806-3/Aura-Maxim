@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Profile | AURA Beauty & Wellness</title>
+    <link rel="stylesheet" href="Profile Page.css" />
+    <link rel="stylesheet" href="Menu.css" />
+    <link rel="stylesheet" href="Footer.css" />
+    <link rel="stylesheet" href="CartComponent.css" />
+    <link rel="stylesheet" href="CheckoutComponent.css" />
+    <link rel="stylesheet" href="Global.css" />
+    <link rel="stylesheet" href="SubscriptionComponent.css" />
+
+    <script type="module">
+      import { renderMenu, moveUserActionsToMenu } from "./Menu.js";
+      import {
+        updateCartBadge,
+        setupCartIcon,
+        loadCart,
+      } from "./CartComponent.js";
+
+      function rebindCartEvents() {
+        updateCartBadge();
+        setupCartIcon();
+        moveUserActionsToMenu();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        rebindCartEvents();
+
+        window.setSiteLanguage = function (lang) {
+          import("./Menu.js").then(
+            ({ setSiteLanguage, moveUserActionsToMenu }) => {
+              setSiteLanguage(lang);
+              moveUserActionsToMenu();
+              rebindCartEvents();
+              window.currentLang = lang;
+              if (window.refreshProductsLanguage)
+                window.refreshProductsLanguage();
+            }
+          );
+        };
+      });
+    </script>
+    <script type="module" src="SubscriptionComponent.js"></script>
+    <script type="module" src="Profile Page.js"></script>
+  </head>
+  <body>
+    <div class="profile-dashboard">
+      <div class="profile-header">
+        <div
+          class="profile-avatar"
+          id="profile-avatar-container"
+          style="position: relative">
+          <input
+            type="file"
+            id="profile-image-input"
+            accept="image/*"
+            style="display: none" />
+          <img
+            id="profile-avatar-img"
+            src=""
+            alt="Profile"
+            style="
+              display: none;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              object-fit: cover;
+              position: absolute;
+              left: 0;
+              top: 0;
+            " />
+          <svg
+            id="profile-avatar-svg"
+            width="56"
+            height="56"
+            fill="#a07a9c"
+            viewBox="0 0 24 24"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+            ">
+            <circle cx="12" cy="8" r="5" />
+            <path d="M12 14c-5 0-9 2.5-9 5v1h18v-1c0-2.5-4-5-9-5z" />
+          </svg>
+          <button
+            id="change-avatar-btn"
+            style="
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              background: #fff;
+              border: none;
+              border-radius: 50%;
+              padding: 4px;
+              cursor: pointer;
+              z-index: 2;
+            ">
+            <svg width="18" height="18" fill="#a07a9c" viewBox="0 0 24 24">
+              <path
+                d="M12 5.5A6.5 6.5 0 1 1 5.5 12 6.5 6.5 0 0 1 12 5.5m0-2A8.5 8.5 0 1 0 20.5 12 8.5 8.5 0 0 0 12 3.5zm0 4A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5z" />
+            </svg>
+          </button>
+        </div>
+        <div>
+          <div class="profile-welcome">
+            Welcome back, <span class="profile-username">User</span>
+          </div>
+          <div class="profile-desc" data-i18n="profile_desc">
+            Manage your account and preferences
+          </div>
+        </div>
+      </div>
+      <div class="profile-content">
+        <div class="profile-settings">
+          <div
+            class="profile-settings-title"
+            data-i18n="profile_settings_title">
+            Account Settings
+          </div>
+          <button class="profile-settings-btn">
+            <span class="profile-settings-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="#63435e"
+                viewBox="0 0 256 256">
+                <path
+                  d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+              </svg>
+            </span>
+            <span data-i18n="profile_settings_profile">Edit profile</span>
+          </button>
+          <button class="profile-settings-btn" id=".profile-settings-btn-1">
+            <span class="profile-settings-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="#63435e"
+                viewBox="0 0 256 256">
+                <path
+                  d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+              </svg>
+            </span>
+            <span data-i18n="profile_settings_preferences">Preferences</span>
+          </button>
+          <button class="profile-settings-btn">
+            <span class="profile-settings-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="#63435e"
+                viewBox="0 0 256 256">
+                <path
+                  d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z"></path>
+              </svg>
+            </span>
+            <span data-i18n="profile_settings_saved">Saved Items</span>
+          </button>
+          <button class="profile-settings-btn">
+            <span class="profile-settings-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="#63435e"
+                viewBox="0 0 256 256">
+                <path
+                  d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
+              </svg>
+            </span>
+            <span data-i18n="profile_settings_orders">Order History</span>
+          </button>
+          <button class="profile-settings-btn logout-btn-custom">
+            <span class="profile-settings-icon">
+              <svg width="22" height="22" fill="#fff" viewBox="0 0 24 24">
+                <path
+                  d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8c-1.1 0-2 .9-2 2v4h2V5h8v14h-8v-4h-2v4c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+              </svg>
+            </span>
+            <span data-i18n="profile_settings_logout">Logout</span>
+          </button>
+        </div>
+        <div class="profile-side" id="profile-side-main">
+          <div class="profile-skin">
+            <div class="profile-skin-title" data-i18n="profile_skin_title">
+              Skin Profile
+            </div>
+            <div class="profile-skin-row">
+              <span data-i18n="profile_skin_type">Skin type</span>
+              <span
+                class="profile-skin-value"
+                data-i18n="profile_skin_value_none"
+                >None</span
+              >
+            </div>
+            <div class="profile-skin-row">
+              <span data-i18n="profile_skin_concerns">Concerns</span>
+              <span
+                class="profile-skin-value"
+                data-i18n="profile_skin_value_none"
+                >None</span
+              >
+            </div>
+          </div>
+          <div class="profile-subscription">
+            <div class="profile-sub-title" data-i18n="profile_sub_title">
+              Subscription
+            </div>
+            <div class="profile-sub-status" data-i18n="profile_sub_status">
+              Active Premium Membership
+            </div>
+            <button class="profile-sub-btn" data-i18n="profile_sub_btn">
+              Manage Subscription
+            </button>
+          </div>
+        </div>
+        <!-- Edit Profile form, ascuns inițial -->
+        <div
+          class="profile-edit-form"
+          id="profile-edit-form"
+          style="display: none">
+          <form id="edit-profile-form" autocomplete="off">
+            <div class="edit-profile-title" data-i18n="edit_profile_title">
+              Edit Profile
+            </div>
+            <div class="edit-profile-row">
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                data-i18n="edit_profile_firstname"
+                required />
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last name"
+                data-i18n="edit_profile_lastname"
+                required />
+            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              data-i18n="edit_profile_email"
+              required
+              style="width: 100%; margin-bottom: 10px" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              data-i18n="edit_profile_password"
+              style="width: 100%; margin-bottom: 10px" />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              data-i18n="edit_profile_confirmpass"
+              style="width: 100%; margin-bottom: 18px" />
+            <button
+              type="submit"
+              class="edit-profile-update-btn"
+              data-i18n="edit_profile_update">
+              Update Profile
+            </button>
+          </form>
+        </div>
+        <!-- Secțiunea Preferences, ascunsă inițial, la același nivel cu profile-side-main și profile-edit-form -->
+        <div
+          class="profile-preferences-form"
+          id="profile-preferences-form"
+          style="display: none">
+          <div class="preferences-title" data-i18n="profile_preferences_title">
+            Preferences
+          </div>
+          <div class="preferences-options">
+            <button
+              class="preferences-btn-light"
+              data-i18n="preferences_light_mode">
+              Light Mode
+            </button>
+            <button
+              class="preferences-btn-dark"
+              data-i18n="preferences_dark_mode">
+              Dark Mode
+            </button>
+            <button
+              class="preferences-btn-delete"
+              data-i18n="preferences_delete_account">
+              Delete Account
+            </button>
+          </div>
+        </div>
+        <!-- Secțiunea Saved Items, ascunsă inițial, la același nivel cu profile-side-main și profile-edit-form -->
+        <div
+          class="profile-saved-items-section"
+          id="profile-saved-items"
+          style="display: none">
+          <h2 class="saved-items-title">Saved Items</h2>
+          <div class="saved-items-list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL DELETE ACCOUNT -->
+    <div id="delete-account-modal" style="display: none">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-message">
+          Are you sure you want to delete your account? This action cannot be
+          undone.
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-delete">Delete</button>
+          <button class="modal-btn modal-btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,364 @@
+.checkout-modal {
+  min-width: 420px !important;
+  max-width: 98vw !important;
+  width: 420px !important;
+  padding: 32px 24px 28px 24px !important;
+  border-radius: 22px;
+}
+
+.cart-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--primary-300);
+  cursor: pointer;
+  font-weight: 700;
+  z-index: 2;
+}
+
+/* Adaugă la final pentru checkout modal */
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0;
+}
+
+.checkout-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+.checkout-label {
+  color: var(--primary-500);
+  font-size: 1.13rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+.checkout-input,
+.checkout-label select.checkout-input {
+  background: transparent;
+  border: 1.5px solid var(--primary-500);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1.08rem;
+  color: var(--primary-500);
+  font-family: inherit;
+  margin-top: 4px;
+  margin-bottom: 0;
+  outline: none;
+  transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkout-input:focus {
+  border-color: var(--primary-500);
+}
+
+.checkout-card-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0;
+}
+
+.checkout-card-row:first-child {
+  position: relative;
+}
+
+.checkout-card-icons {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 2px;
+}
+
+.checkout-card-row input.checkout-input {
+  width: 100%;
+  padding-right: 90px;
+}
+
+.checkout-card-row + .checkout-card-row input.checkout-input {
+  width: 50%;
+  flex: 1;
+}
+
+.checkout-card-row input.checkout-input:last-child {
+  margin-right: 0;
+}
+
+.checkout-checkbox {
+  color: var(--primary-300);
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.checkout-form button[type="submit"] {
+  background: var(--primary-300);
+  color: var(--primary-100-green);
+  border: none;
+  border-radius: 18px;
+  padding: 12px 0;
+  font-size: 1.18rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 24px auto 0 auto;
+  display: block;
+}
+
+.checkout-form button[type="submit"]:hover {
+  background: var(--primary-500);
+}
+
+/* Ajustează iconițele cardurilor să fie pe același rând cu inputul */
+.checkout-card-icons img {
+  margin-left: 4px;
+  vertical-align: middle;
+  height: 22px;
+  width: auto;
+}
+
+/* Dropdown-ul pentru select să fie roz pal și săgeata să se rotească la deschidere */
+
+/* Stil pentru <select> */
+.checkout-input,
+.checkout-label select.checkout-input {
+  background: var(--primary-100); /* roz pal ca restul paginii */
+  border: 1.5px solid var(--primary-300);
+  border-radius: 8px;
+  color: var(--primary-500);
+  font-size: 1.08rem;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  padding-right: 36px; /* spațiu pentru săgeată */
+}
+
+/* Săgeată custom pentru select */
+.checkout-label {
+  position: relative;
+}
+.checkout-label select.checkout-input {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23b884af' height='18' viewBox='0 0 20 20' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 7l3 3 3-3'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px 18px;
+  cursor: pointer;
+}
+
+/* Pentru Chrome/Edge/Opera: culoare fundal dropdown */
+.checkout-label select.checkout-input:focus {
+  outline: none;
+}
+.checkout-label select.checkout-input option {
+  background: var(--primary-100);
+  color: var(--primary-500);
+}
+
+/* Pentru Firefox */
+.checkout-label select.checkout-input:-moz-focusring {
+  color: var(--primary-500);
+  background: var(--primary-100);
+}
+
+/* Toate iconițele din checkout să fie mici, egale și să nu iasă în afara inputului */
+
+.checkout-card-icons img {
+  height: 18px !important;
+  width: 28px !important;
+  min-width: 18px;
+  max-width: 32px;
+  object-fit: contain;
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 0;
+  vertical-align: middle;
+  box-sizing: content-box;
+}
+
+.checkout-card-icons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 18px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  padding: 0;
+}
+
+/* Săgeată custom pentru select: dreapta inițial, jos la focus/deschidere, SVG corect ca data-uri */
+
+.checkout-label select.checkout-input {
+  /* Săgeată spre dreapta (inițial) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2363435e' viewBox='0 0 256 256'><path d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px 18px;
+  cursor: pointer;
+  transition: background-image 0.2s,
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Săgeată în jos la focus/deschidere */
+.checkout-label select.checkout-input:focus {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2363435e' viewBox='0 0 256 256'><path d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/></svg>");
+}
+
+.checkout-label select.checkout-input:not(:focus) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2363435e' viewBox='0 0 256 256'><path d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'/></svg>");
+}
+.checkout-label select.checkout-input:focus {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2363435e' viewBox='0 0 256 256'><path d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/></svg>");
+}
+
+.card-logo {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  transition: opacity 0.3s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+.card-logo.hide {
+  opacity: 0;
+  transform: translateX(0) scale(0.7);
+  pointer-events: none;
+  z-index: 0;
+}
+.card-logo-mastercard.active {
+  transform: translateX(0px) scale(1.1);
+}
+.card-logo-visa.active {
+  transform: translateX(32px) scale(1.1);
+}
+.secure-connection {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  background: #eafbe7;
+  border-radius: 6px;
+  padding: 6px 12px;
+  width: fit-content;
+}
+
+@media (max-width: 900px) {
+  .checkout-modal {
+    min-width: 10% !important;
+    max-width: 99vw !important;
+    width: 80% !important;
+    padding: 18px 8px 18px 8px !important;
+    border-radius: 16px;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+  }
+  .checkout-title {
+    font-size: 1.3rem;
+    /* text-align: center; */
+    margin-bottom: 12px;
+  }
+  .checkout-form {
+    gap: 12px;
+    padding: 0;
+  }
+  .checkout-label {
+    font-size: 1rem;
+    gap: 4px;
+  }
+  .checkout-input,
+  .checkout-label select.checkout-input {
+    font-size: 0.98rem;
+    padding: 8px 10px;
+    border-radius: 7px;
+  }
+  .checkout-form button[type="submit"] {
+    font-size: 1.05rem;
+    padding: 10px 0;
+    border-radius: 12px;
+    margin-top: 18px;
+  }
+  .checkout-card-icons img {
+    height: 16px !important;
+    width: 24px !important;
+  }
+  .secure-connection {
+    font-size: 0.95rem;
+    padding: 5px 8px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout-modal {
+    border-radius: 0 !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 1rem !important;
+    padding: 5vw !important;
+  }
+  .checkout-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    /* text-align: center; */
+  }
+  .card-logo-visa.active {
+    transform: translateX(22px) scale(1.1);
+  }
+  .checkout-form {
+    gap: 8px;
+    padding: 0 2vw;
+  }
+  .checkout-label {
+    font-size: 0.95rem;
+    gap: 2px;
+  }
+  .checkout-input,
+  .checkout-label select.checkout-input {
+    font-size: 0.9rem;
+    padding: 7px 8px;
+    border-radius: 6px;
+  }
+  .checkout-form button[type="submit"] {
+    font-size: 0.98rem;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+  .checkout-card-icons img {
+    height: 13px !important;
+    width: 18px !important;
+  }
+  .secure-connection {
+    font-size: 0.85rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+}
